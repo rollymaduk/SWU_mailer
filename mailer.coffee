@@ -7,6 +7,12 @@ class Rp_SWU_Mailer
       catch err
         throw new Meteor.Error(err.id,err.message)
 
+  createMailItems:(name,emails,data)->
+    try
+      check(emails,[String])
+      (@createMailItem(name,email,data) for email in emails)
+    catch err
+      throw new Meteor.Error(err.id,err.message)
 
   createMailItem:(name,email,data)->
     try
