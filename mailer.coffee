@@ -32,6 +32,7 @@ class Rp_SWU_Mailer
       Meteor.call 'rp_swu_send',emails
 
 
+
 if Meteor.isClient
   class Rp_SWU_Mailer_Client extends Rp_SWU_Mailer
 
@@ -39,6 +40,7 @@ if Meteor.isClient
 
 if Meteor.isServer
   class Rp_SWU_Mailer_Server extends Rp_SWU_Mailer
+
     constructor:()->
       Meteor.startup ->
         try
@@ -53,6 +55,7 @@ if Meteor.isServer
 
       Meteor.methods
         rp_swu_send:(emails)->
+
           @unblock()
           try
             check(emails,[{email_id:String,recipient:{address:String},email_data:Object}])
